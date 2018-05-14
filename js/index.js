@@ -24,7 +24,7 @@ var nodes = [];
 const root = d3.select('#root');
 
 
- // Returns a random integer between min (inclusive) and max (inclusive)
+// Returns a random integer between min (inclusive) and max (inclusive)
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -70,7 +70,7 @@ var svgPaths = svg.selectAll(".spider")
     d3.select(this)
       .remove();
     svg.selectAll(".spider")
-      .data([1,2])
+      .data([1, 2])
       .enter()
       .append('path')
       .attr("class", ".spider")
@@ -80,11 +80,85 @@ var svgPaths = svg.selectAll(".spider")
       .style("fill", spider.fill)
       .style('stroke-width', '1')
       .style("transform", function(d) {
-        return '' + "scale(.05) rotate(" + getRandomInt(0, 180) + "deg)" + ''
+        return '' + "scale(.126) rotate(" + getRandomInt(0, 180) + "deg)" + ''
       })
       //moving the onclick generated svgs
       .style("transform-origin", function(d) {
         return '' + (getRandomInt(150, width - 150)) + 'px' + ' ' + (getRandomInt(150, height - 150)) + 'px' + ''
+      })
+      .on('click', function() {
+        d3.select(this)
+          .remove();
+        svg.selectAll(".spider")
+          .data([1, 2])
+          .enter()
+          .append('path')
+          .attr("class", ".spider")
+          .attr("id", "spider")
+          .attr("d", spider.d)
+          .style("stroke", spider.stroke)
+          .style("fill", spider.fill)
+          .style('stroke-width', '1')
+          .style("transform", function(d) {
+            return '' + "scale(.07) rotate(" + getRandomInt(0, 180) + "deg)" + ''
+          })
+          //moving the onclick generated svgs
+          .style("transform-origin", function(d) {
+            return '' + (getRandomInt(150, width - 150)) + 'px' + ' ' + (getRandomInt(150, height - 150)) + 'px' + ''
+          })
+          .on('click', function() {
+            d3.select(this)
+              .remove();
+            svg.selectAll(".spider")
+              .data([1, 2])
+              .enter()
+              .append('path')
+              .attr("class", ".spider")
+              .attr("id", "spider")
+              .attr("d", spider.d)
+              .style("stroke", spider.stroke)
+              .style("fill", spider.fill)
+              .style('stroke-width', '1')
+              .style("transform", function(d) {
+                return '' + "scale(.045) rotate(" + getRandomInt(0, 180) + "deg)" + ''
+              })
+              //moving the onclick generated svgs
+              .style("transform-origin", function(d) {
+                return '' + (getRandomInt(150, width - 150)) + 'px' + ' ' + (getRandomInt(150, height - 150)) + 'px' + ''
+              })
+              .on('click', function() {
+                d3.select(this)
+                  .remove();
+              })
+              .on('mouseover', function(d) {
+                d3.select(this)
+                  .transition().duration(200) //Set transition
+                  .style('stroke', 'rgb(222, 255, 0)')
+                  .style('fill', 'rgb(255, 0, 0)')
+                  .style('stroke-width', '5')
+              })
+              .on('mouseout', function(d) {
+                d3.select(this)
+                  .transition().duration(200)
+                  .style('stroke', spider.stroke)
+                  .style("fill", spider.fill)
+                  .style('stroke-width', '1')
+              })
+          })
+          .on('mouseover', function(d) {
+            d3.select(this)
+              .transition().duration(200) //Set transition
+              .style('stroke', 'rgb(222, 255, 0)')
+              .style('fill', 'rgb(255, 0, 0)')
+              .style('stroke-width', '5')
+          })
+          .on('mouseout', function(d) {
+            d3.select(this)
+              .transition().duration(200)
+              .style('stroke', spider.stroke)
+              .style("fill", spider.fill)
+              .style('stroke-width', '1')
+          })
       })
       .on('mouseover', function(d) {
         d3.select(this)
@@ -100,10 +174,6 @@ var svgPaths = svg.selectAll(".spider")
           .style("fill", spider.fill)
           .style('stroke-width', '1')
       })
-      .call(d3.drag()
-        .on("start", dragstarted)
-        .on("drag", dragged)
-        .on("end", dragended));
   })
   .on('mouseover', function(d) {
     d3.select(this)
@@ -118,26 +188,8 @@ var svgPaths = svg.selectAll(".spider")
       .style('stroke', spider.stroke)
       .style("fill", spider.fill)
       .style('stroke-width', '1')
-  })
-  .call(d3.drag()
-    .on("start", dragstarted)
-    .on("drag", dragged)
-    .on("end", dragended));
-
-function dragstarted(d) {
-  d3.select(this).raise().classed("active", true);
-}
-
-function dragged(d) {
-  d3.select(this).style("transform-origin", function(d) {
-    return '' + (d3.event.x) + 'px' + ' ' + (d3.event.y + 50) + 'px' + ''
-  })
-}
-
-function dragended(d) {
-  d3.select(this).classed("active", false);
-}
+  });
 
 const instructions = root.append('div').attr('id', 'instructions').append('div');
-instructions.append('p').text('Cliccare sui ragni per farli sparire e generarne due nuovi, piu\' piccoli, in posizione casuale.');
-instructions.append('p').text("E\' anche possibile spostare i ragni trascinandoli.");
+instructions.append('p').text('Cliccare sui ragni per farli sparire e generarne due nuovi, piu\' piccoli del 30%, in posizione casuale.');
+instructions.append('p').text("Al quarto click il ragno pi\' piccolo sparisce");

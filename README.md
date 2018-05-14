@@ -8,8 +8,11 @@ Progetto per il corso di Information Visualization a.a. 2017-2018
 
 * Le sovrapposizioni sono permesse
 
-* Facendo click su un ragno questo scompare ma ne appaiono due più piccoli in posizione randomica nell'area di disegno
+* Facendo click su un ragno questo scompare ma ne appaiono due più piccoli del 30%
+in posizione randomica nell'area di disegno
+
+* Alla quarta iterazione il ragno scompare.
 
 ## Realizzato con
 
-* [D3.js](https://d3js.org/) - Data-Driven Documents 
+* [D3.js](https://d3js.org/) - Data-Driven Documents

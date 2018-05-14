@@ -3,8 +3,9 @@
 =======================================================
 Disegna 30 ragni (è sufficiente la silhouette).
 Le sovrapposizioni sono permesse.
-Facendo click su un ragno questo scompare ma ne appaiono due più piccoli
-in posizione randomica nell'area di disegno.
+Facendo click su un ragno questo scompare ma ne appaiono due più piccoli del
+30% in posizione randomica nell'area di disegno.
+Alla quarta iterazione il ragno scompare.
 =======================================================
 */
 
